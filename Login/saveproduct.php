@@ -2,10 +2,14 @@
 
     $allowedType=["jpg","jpeg","gif","png","tif","tiff"];
     $fileType=explode("/",$_FILES["filepic"]["type"]);
+    $size = $_FILES["filepic"]["size"];
     //image/png fileType=["image","png"]
     if(!in_array($fileType[1],$allowedType)){
         //เมื่อ Upload File ที่ไม่ตรงกับ Type ใน AllowedType
         echo "Non-image file is not allowed.";
+    }
+    else if($size>1.00){
+        echo "File size exceeds maximun treshold.";
     }
     else{
         echo  "Type: ". $_FILES["filepic"]["type"]. "<br>";
