@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="dexcription" class="control-label col-md-3">Description:</label>
+                    <label for="description" class="control-label col-md-3">Description:</label>
                     <div class="col-md-9">
                         <input type="text" name="txtDescription" class="form-control">
                     </div>
@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="name" class="control-label col-md-3">Produce Picture:</label>
+                    <label for="picture" class="control-label col-md-3">Produce Picture:</label>
                     <div class="col-md-9">
                         <input type="file" name="filepic" class="form-control-file" accept="image/*" >  
                     </div>
