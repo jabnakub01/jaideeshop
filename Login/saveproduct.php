@@ -1,5 +1,6 @@
 <?php
 
+    echo ini_get("upload_max_filesize"). "<br>";
     $allowedType=["jpg","jpeg","gif","png","tif","tiff"];
     $fileType=explode("/",$_FILES["filepic"]["type"]);
     $size = $_FILES["filepic"]["size"];
