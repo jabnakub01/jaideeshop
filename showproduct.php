@@ -1,6 +1,25 @@
 <?php
     session_start();
+    if(isset($_GET['cat'])){
+        $category = $_GET['cat'];
+    }
+    else{
+        header("Location: index.php");
+    }
     include("connect.php");
+    $sql = "SELECT * FROM product WHERE category=$category";
+    $result = $con->query($sql);
+    if(!$result){
+        echo "Error: " . $con->error;
+    }
+    else{
+        if($result->num_rows>0){
+            $prd = $result->fetch_object();
+        }
+        else{
+            $prd = NULL;
+        }
+    }
 ?>
 
 
@@ -30,7 +49,16 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
-                    <li><a href="#">Products</a></li>
+                    <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Product <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="showproduct.php?cat=1">Notebook</a></li>
+                        <li><a href="showproduct.php?cat=2">Keyboard</a></li>
+                        <li><a href="showproduct.php?cat=3">Mypc</a></li>
+                    </ul>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
 
@@ -81,13 +109,8 @@
     <div class="container">
         <div class="row">
         <?php
-            $sql = "SELECT * FROM product ORDER BY id";
+            $sql = "SELECT * FROM product WHERE category=$category";
             $result = $con->query($sql);
-            if(!$result){
-                echo "Error during data retrieval";
-            }
-            else{
-                //ดึงข้อมูล
                 while($prd=$result->fetch_object()){
                     //$prd->id; //$prd["id"];
         ?>
@@ -109,7 +132,7 @@
                     </div>
                 </div>
             <?php
-                }
+                
             }
             ?>
                 
